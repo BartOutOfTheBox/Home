@@ -4,7 +4,8 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches:
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -33,10 +34,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Set Custom Domain
+        run: echo "bartoutofthebox.com" > ./apps/homepage/src/CNAME
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload homepage src folder only
           path: "./apps/homepage/src"
       - name: Deploy to GitHub Pages
         id: deployment
