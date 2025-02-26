@@ -42,8 +42,28 @@ jobs:
         working-directory: infra
 
       - name: Terraform Plan
+        id: tf-plan
         run: terraform plan
         working-directory: infra
+
+      - name: Terraform Store Plan
+        id: tf-plan-store
+        run: terraform show -no-color >> $TF_PLAN
+
+      - name: Manual Approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ secrets.GITHUB_TOKEN }}
+          approvers: BartOutOfTheBox
+          minimum-approvals: 1
+          issue-title: "Review Terraform plan"
+          issue-body: |
+            Review the terraform plan, then approve or deny the deployment to prod.
+
+            ```hcl
+            ${{ steps.tf-plan-store.outputs.tf-plan }}
+            ```
+          exclude-workflow-initiator-as-approver: false
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
