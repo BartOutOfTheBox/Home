@@ -31,6 +31,7 @@ jobs:
           operation: download
           location: artifact
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: infra
         continue-on-error: true
 
       - name: Set up Terraform
@@ -55,3 +56,4 @@ jobs:
           operation: upload
           location: artifact
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: infra
