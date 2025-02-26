@@ -41,11 +41,11 @@ jobs:
         working-directory: infra
 
       - name: Terraform Plan
-        run: terraform plan -var="run_id=${{ github.run_id }}"
+        run: terraform plan
         working-directory: infra
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="run_id=${{ github.run_id }}"
+        run: terraform apply -auto-approve
         working-directory: infra
 
       - name: Encrypt .tfstate & Upload
