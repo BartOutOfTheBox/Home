@@ -48,7 +48,7 @@ jobs:
 
       - name: Terraform Store Plan
         id: tf-plan-store
-        run: terraform show -no-color >> $TF_PLAN
+        run: echo "tf-plan=$(terraform show -no-color)" >> $GITHUB_OUTPUT
 
       - name: Manual Approval
         uses: trstringer/manual-approval@v1
