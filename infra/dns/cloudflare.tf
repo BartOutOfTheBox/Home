@@ -64,3 +64,11 @@ resource "cloudflare_dns_record" "_domainconnect" {
   proxied = false
   ttl     = 3600
 }
+
+resource "cloudflare_dns_record" "wildcard" {
+  zone_id = var.zone_id
+  name    = "*.bartoutofthebox.com"
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
