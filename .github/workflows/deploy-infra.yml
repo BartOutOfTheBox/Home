@@ -10,6 +10,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
