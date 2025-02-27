@@ -12,7 +12,7 @@ on:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: "terraform-deploy"
   cancel-in-progress: false
 
 jobs:
@@ -44,8 +44,14 @@ jobs:
 
       - name: Terraform Plan
         id: tf-plan
-        run: terraform plan
+        run: terraform plan -out tfplan
         working-directory: infra
+
+      - name: Upload Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: infra/tfplan
 
   apply:
     name: "Terraform Apply"
@@ -56,8 +62,34 @@ jobs:
     environment:
       name: prd
     steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Download Encrypted .tfstate & Decrypt
+        uses: badgerhobbs/terraform-state@v2
+        with:
+          encryption_key: ${{ secrets.TFSTATE_ENCRYPTION_KEY }}
+          operation: download
+          location: artifact
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: infra
+        continue-on-error: true
+
+      - name: Download Plan
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan
+          path: infra/
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: infra
+
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve tfplan
         working-directory: infra
 
       - name: Encrypt .tfstate & Upload
