@@ -67,7 +67,7 @@ resource "cloudflare_dns_record" "_domainconnect" {
 
 resource "cloudflare_dns_record" "wildcard" {
   zone_id = var.zone_id
-  name    = *.bartoutofthebox.com"
+  name    = "*.bartoutofthebox.com"
   content = "0.0.0.0"   # Placeholder which will be updated dynamically
   type    = "A"
   proxied = true
