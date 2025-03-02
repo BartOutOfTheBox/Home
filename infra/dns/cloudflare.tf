@@ -65,12 +65,12 @@ resource "cloudflare_dns_record" "_domainconnect" {
   ttl     = 3600
 }
 
-resource "cloudflare_dns_record" "ddns_worker" {
-  zone_id = var.zone_id
-  name    = "ddns.bartoutofthebox.com"
-  content = "unifi-cloudflare-ddns"
-  ttl     = 1
-  type    = "Worker"
+resource "cloudflare_workers_domain" "ddns_worker_custom_domain" {
+  zone_id     = var.zone_id
+  account_id  = var.account_id
+  hostname    = "ddns.bartoutofthebox.com"
+  service     = "unifi-cloudflare-ddns"
+  environment = "production"
 }
 
 resource "cloudflare_dns_record" "wildcard" {
