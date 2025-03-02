@@ -67,8 +67,8 @@ resource "cloudflare_dns_record" "_domainconnect" {
 
 resource "cloudflare_dns_record" "ddns_worker" {
   zone_id = var.zone_id
-  name    = ddns.bartoutofthebox.com
-  content = unifi-cloudflare-ddns
+  name    = "ddns.bartoutofthebox.com"
+  content = "unifi-cloudflare-ddns"
   ttl     = 1
   type    = "Worker"
 }
