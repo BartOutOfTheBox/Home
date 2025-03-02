@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Dyndns Worker
 
 on:
   push:
