@@ -65,7 +65,7 @@ resource "cloudflare_dns_record" "_domainconnect" {
   ttl     = 3600
 }
 
-resource "cloudflare_workers_domain" "ddns_worker_custom_domain" {
+resource "cloudflare_workers_custom_domain" "ddns_worker_custom_domain" {
   zone_id     = var.zone_id
   account_id  = var.account_id
   hostname    = "ddns.bartoutofthebox.com"
