@@ -47,10 +47,46 @@ resource "cloudflare_dns_record" "root4" {
   ttl     = 3600
 }
 
+resource "cloudflare_dns_record" "rootAAAA1" {
+  zone_id = var.zone_id
+  name    = "bartoutofthebox.com"
+  content = "2606:50c0:8000::153"
+  type    = "AAAA"
+  proxied = false
+  ttl     = 3600
+}
+
+resource "cloudflare_dns_record" "rootAAAA2" {
+  zone_id = var.zone_id
+  name    = "bartoutofthebox.com"
+  content = "2606:50c0:8001::153"
+  type    = "AAAA"
+  proxied = false
+  ttl     = 3600
+}
+
+resource "cloudflare_dns_record" "rootAAAA3" {
+  zone_id = var.zone_id
+  name    = "bartoutofthebox.com"
+  content = "2606:50c0:8002::153"
+  type    = "AAAA"
+  proxied = false
+  ttl     = 3600
+}
+
+resource "cloudflare_dns_record" "rootAAAA4" {
+  zone_id = var.zone_id
+  name    = "bartoutofthebox.com"
+  content = "2606:50c0:8003::153"
+  type    = "AAAA"
+  proxied = false
+  ttl     = 3600
+}
+
 resource "cloudflare_dns_record" "www" {
   zone_id = var.zone_id
   name    = "www"
-  content = "bartoutofthebox.github.io"
+  content = "bartoutofthebox.com"
   type    = "CNAME"
   proxied = false
   ttl     = 3600
