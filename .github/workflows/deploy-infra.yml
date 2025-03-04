@@ -76,8 +76,8 @@ jobs:
     if: needs.plan.outputs.has_changes == 'true'
     env:
       TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-    environment:
-      name: prd
+    environments:
+      - name: cloudflare
     steps:
       - name: Check out code
         uses: actions/checkout@v4
