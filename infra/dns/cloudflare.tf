@@ -82,6 +82,6 @@ resource "cloudflare_dns_record" "wildcard" {
   ttl     = 1
 
   lifecycle {
-    ignore_changes = [content, proxied]
+    ignore_changes = [content]
   }
 }
