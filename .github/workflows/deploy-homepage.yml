@@ -37,7 +37,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Set Custom Domain
-        run: echo "bartoutofthebox.com" > ./apps/homepage/src/CNAME
+        run: echo "www.bartoutofthebox.com" > ./apps/homepage/src/CNAME
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
