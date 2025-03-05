@@ -74,7 +74,7 @@ resource "cloudflare_dns_record" "wwwAAAA3" {
   ttl     = 3600
 }
 
-resource "www.cloudflare_dns_record" "wwwAAAA4" {
+resource "cloudflare_dns_record" "wwwAAAA4" {
   zone_id = var.zone_id
   name    = "www.bartoutofthebox.com"
   content = "2606:50c0:8003::153"
