@@ -112,3 +112,12 @@ resource "cloudflare_dns_record" "wildcard" {
     ignore_changes = [content]
   }
 }
+
+resource "cloudflare_dns_record" "github_verification" {
+  zone_id = var.zone_id
+  name    = "_github-pages-challenge-BartOutOfTheBox.bartoutofthebox.com"
+  content = "1591e97dd25716813d1d84eae6b2da"
+  type    = "TXT"
+  proxied = false
+  ttl     = 1
+}
