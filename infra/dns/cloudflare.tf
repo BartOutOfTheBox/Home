@@ -85,7 +85,7 @@ resource "cloudflare_dns_record" "rootAAAA4" {
 
 resource "cloudflare_dns_record" "www" {
   zone_id = var.zone_id
-  name    = "bartoutofthebox.com"
+  name    = "www.bartoutofthebox.com"
   content = "bartoutofthebox.github.io"
   type    = "CNAME"
   proxied = false
