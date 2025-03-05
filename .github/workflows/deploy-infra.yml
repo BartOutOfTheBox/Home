@@ -27,15 +27,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Download Encrypted .tfstate & Decrypt
-        uses: badgerhobbs/terraform-state@v2
-        with:
-          encryption_key: ${{ secrets.TFSTATE_ENCRYPTION_KEY }}
-          operation: download
-          location: artifact
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: infra
-        continue-on-error: true
+      # - name: Download Encrypted .tfstate & Decrypt
+      #   uses: badgerhobbs/terraform-state@v2
+      #   with:
+      #     encryption_key: ${{ secrets.TFSTATE_ENCRYPTION_KEY }}
+      #     operation: download
+      #     location: artifact
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     directory: infra
+      #   continue-on-error: true
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
