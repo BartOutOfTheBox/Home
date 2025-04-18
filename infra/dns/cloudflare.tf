@@ -121,3 +121,12 @@ resource "cloudflare_dns_record" "github_verification" {
   proxied = false
   ttl     = 1
 }
+
+resource "cloudflare_dns_record" "zoho_verification" {
+  zone_id = var.zone_id
+  name    = "@"
+  content = "\"zoho-verification=zb38388977.zmverify.zoho.eu\""
+  type    = "TXT"
+  proxied = false
+  ttl     = 1
+}
