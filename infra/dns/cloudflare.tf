@@ -122,6 +122,54 @@ resource "cloudflare_dns_record" "github_verification" {
   ttl     = 1
 }
 
+resource "cloudflare_dns_record" "zoho_mx1" {
+  zone_id = var.zone_id
+  name    = "@"
+  content = "mx.zoho.eu"
+  type    = "MX"
+  priority = 10
+  proxied = false
+  ttl     = 60
+}
+
+resource "cloudflare_dns_record" "zoho_mx2" {
+  zone_id = var.zone_id
+  name    = "@"
+  content = "mx2.zoho.eu"
+  type    = "MX"
+  priority = 20
+  proxied = false
+  ttl     = 60
+}
+
+resource "cloudflare_dns_record" "zoho_mx3" {
+  zone_id = var.zone_id
+  name    = "@"
+  content = "mx3.zoho.eu"
+  type    = "MX"
+  priority = 30
+  proxied = false
+  ttl     = 60
+}
+
+resource "cloudflare_dns_record" "zoho_SPF" {
+  zone_id = var.zone_id
+  name    = "@"
+  content = "\"v=spf1 include:zohomail.eu ~all\""
+  type    = "TXT"
+  proxied = false
+  ttl     = 60
+}
+
+resource "cloudflare_dns_record" "zoho_DKIM" {
+  zone_id = var.zone_id
+  name    = "zmail._domainkey"
+  content = "\"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCiYBjAjEiW4sAUjdrrjPI8uhZJHf6McQM/dQlfn3Ka/5YvJVs8i4whwyuGz9bn21hq4rGRkzfDX7krpYbkcR6Akvtr/blrE7zhJKFdUUkvjzpwfvdS16K70kRAWUdZCkKoYgSAyWdtaM/CFNKDqJ2GaLs02RwhESeDDmnKpYbi7QIDAQAB\""
+  type    = "TXT"
+  proxied = false
+  ttl     = 60
+}
+
 resource "cloudflare_dns_record" "zoho_verification" {
   zone_id = var.zone_id
   name    = "@"
