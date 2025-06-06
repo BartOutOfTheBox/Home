@@ -92,14 +92,6 @@ resource "cloudflare_dns_record" "www" {
   ttl     = 3600
 }
 
-resource "cloudflare_workers_custom_domain" "ddns_worker_custom_domain" {
-  zone_id     = var.zone_id
-  account_id  = var.account_id
-  hostname    = "ddns.bartoutofthebox.com"
-  service     = "unifi-cloudflare-ddns"
-  environment = "production"
-}
-
 resource "cloudflare_dns_record" "vpn" {
   zone_id = var.zone_id
   name    = "vpn.bartoutofthebox.com"
