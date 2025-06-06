@@ -100,9 +100,9 @@ resource "cloudflare_workers_custom_domain" "ddns_worker_custom_domain" {
   environment = "production"
 }
 
-resource "cloudflare_dns_record" "wildcard" {
+resource "cloudflare_dns_record" "vpn" {
   zone_id = var.zone_id
-  name    = "*.bartoutofthebox.com"
+  name    = "vpn.bartoutofthebox.com"
   content = "0.0.0.0"   # Placeholder which will be updated dynamically
   type    = "A"
   proxied = false  # Placeholder which can be changed whenever the content is actually filled
